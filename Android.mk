@@ -27,4 +27,25 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter h872,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
+LIBQDUTILS_LIBS := libqdutils.so
+LIBQDUTILS_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR_APPS)/libqdutils/lib/arm64/,$(notdir $(IMS_LIBS)))
+$(LIBQDUTILS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "LIBQDUTILS lib link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(LIBQDUTILS_SYMLINKS)
+
+LIBQSERVICE_LIBS := libqservice.so
+LIBQSERVICE_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR_APPS)/libqservice/lib/arm64/,$(notdir $(IMS_LIBS)))
+$(LIBQSERVICE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "LIBQSERVICE lib link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(LIBQSERVICE_SYMLINKS)
+
 endif
