@@ -31,6 +31,3 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 24595398656
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-
-# inherit from the proprietary version
--include vendor/lge/h872/BoardConfigVendor.mk

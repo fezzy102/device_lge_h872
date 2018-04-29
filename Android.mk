@@ -23,9 +23,10 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
+ifneq ($(filter h872, $(TARGET_DEVICE)),)
+
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter h872,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 LIBQDUTILS_LIBS := libqdutils.so
